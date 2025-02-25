@@ -22,6 +22,7 @@ export const generateToken = async (userId: UserIdType): Promise<string | void> 
       process.exit(1);
     }
     const token = jwt.sign({ userId }, JWT_SECRET);
+    console.log(token)
     return token;
   } catch (error) {
     process.exit(1);
