@@ -176,7 +176,7 @@ Retourne un projet spécifique en fonction de son ID.
 ```json
 {
   "id": 2,
-  "name": "Project 2
+  "name": "Project 2",
 }
 ```
 
