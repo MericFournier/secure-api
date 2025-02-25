@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "outDir": "./dist",
+    "rootDir": ".",
+    "strict": true,
+    "moduleResolution": "NodeNext", 
+    "skipLibCheck": true,
+    "types": ["node", "jest", "supertest"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx",
+    "esModuleInterop": true,
+    "baseUrl": "./src",
+    "paths": {
+      "prisma/*": ["../prisma/*"],
+      "utils/*": ["utils/*"],
+      "modules/*": ["modules/*"]
+    }
+  },
+  "include": ["src", "tests", "prisma/prisma.ts"], 
+  "exclude": ["node_modules", "dist"]
+}

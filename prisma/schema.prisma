@@ -1,0 +1,101 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+//  TABLE USERS
+model User {
+  id        Int     @id @default(autoincrement())
+  username  String  @unique @map("username")
+  email     String  @unique
+  isAdmin   Boolean @default(false) @map("is_admin")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  userRole  UserRole?
+  projectAccess ProjectAccess[]
+  createdProjects Project[] @relation("ProjectCreator")
+  createdAnalyses Analysis[] @relation("AnalysisCreator")
+}
+
+//  TABLE DES ROLES
+model Role {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  rolePermissions RolePermission[]
+  userRoles       UserRole[]
+}
+
+//  TABLE PERMISSIONS
+model Permission {
+  id       Int    @id @default(autoincrement())
+  name     String @unique
+  category String 
+
+  rolePermissions RolePermission[]
+}
+
+//  RELATION UTILISATEURS ⇔ ROLES (Chaque user a 1 seul rôle global)
+model UserRole {
+  userId Int @unique
+  roleId Int
+
+  user User @relation(fields: [userId], references: [id])
+  role Role @relation(fields: [roleId], references: [id])
+
+  @@id([userId, roleId])
+}
+
+//  TABLE PROJECTS
+model Project {
+  id        Int    @id @default(autoincrement())
+  name      String @map("name")
+  createdBy Int
+  creator   User   @relation("ProjectCreator", fields: [createdBy], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  analyses      Analysis[]
+  projectAccess ProjectAccess[]
+}
+
+//  TABLE ANALYSES
+model Analysis {
+  id        Int     @id @default(autoincrement())
+  name      String
+  projectId Int
+  project   Project @relation(fields: [projectId], references: [id])
+  createdBy Int
+  creator   User    @relation("AnalysisCreator", fields: [createdBy], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+//  RELATION UTILISATEURS - PROJETS (Accès à un projet)
+model ProjectAccess {
+  userId    Int
+  projectId Int
+
+  user    User    @relation(fields: [userId], references: [id])
+  project Project @relation(fields: [projectId], references: [id])
+
+  @@id([userId, projectId]) 
+}
+
+//  RELATION ROLES - PERMISSIONS
+model RolePermission {
+  roleId       Int
+  permissionId Int
+  role         Role       @relation(fields: [roleId], references: [id])
+  permission   Permission @relation(fields: [permissionId], references: [id])
+
+  @@id([roleId, permissionId])
+}

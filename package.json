@@ -1,0 +1,53 @@
+{
+  "name": "rnest-test-technique",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "test:unit:projects": "npx jest --verbose ./src/modules/projects --testPathIgnorePatterns=./src/modules/projects/tests",
+    "test:unit:analysis": "npx jest --verbose ./src/modules/analysis --testPathIgnorePatterns=./src/modules/analysis/tests",
+    "test:unit": "npm run test:unit:projects && npm run test:unit:analysis",
+    "test:inte:analysis": "cross-env NODE_ENV=test DATABASE_URL=file:./prisma/tests/database/test.sqlite3 npx jest src/modules/analysis/tests --runInBand --verbose",
+    "test:inte:projects": "cross-env NODE_ENV=test DATABASE_URL=file:./prisma/tests/database/test.sqlite3 npx jest src/modules/projects/tests --runInBand --verbose",
+    "test:inte": "npm run test:inte:analysis && npm run test:inte:projects",
+    "test": "npm run test:unit && npm run test:inte",
+    "db:seed": "npx tsx tests/database/populate-db.ts",
+    "db:reset": "npx tsx tests/database/reset-db.ts",
+    "db:init": "npx prisma migrate dev --name init && npx prisma generate",
+    "db:preview": "npx prisma studio",
+    "db:test": "DATABASE_URL=\"file:./prisma/tests/database/test.sqlite3\" npx prisma db push",
+    "db:test:preview": "DATABASE_URL=\"file:./prisma/tests/database/test.sqlite3\" npx prisma studio",
+    "generate-jwt": "tsx tests/utils/generateToken.ts",
+    "generate-secret": "openssl rand -hex 64"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.8",
+    "dotenv": "^16.4.7",
+    "hono": "^4.7.1",
+    "hono-rate-limiter": "^0.4.2",
+    "jsonwebtoken": "^9.0.2",
+    "logform": "^2.7.0",
+    "typescript": "^5.7.3",
+    "uuid": "^11.1.0",
+    "winston": "^3.17.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.0",
+    "@prisma/client": "^6.4.1",
+    "@types/jest": "^29.5.14",
+    "@types/jsonwebtoken": "^9.0.8",
+    "@types/node": "^20.17.19",
+    "@types/supertest": "^6.0.2",
+    "@typescript-eslint/eslint-plugin": "^8.25.0",
+    "@typescript-eslint/parser": "^8.25.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.21.0",
+    "globals": "^16.0.0",
+    "jest": "^29.7.0",
+    "jest-mock-extended": "^4.0.0-beta1",
+    "npm-run-all": "^4.1.5",
+    "ts-jest": "^29.2.5",
+    "tsx": "^4.19.3"
+  },
+  "packageManager": "npm@11.1.0+sha512.acf301ad9b9ddba948fcb72341e2f0fcae477f56a95cc2a092934d133a7461062633cefbf93d5934a3dc0768674e2edee9f04dcfcc4bb4c327ff0e3a7d552a1b"
+}

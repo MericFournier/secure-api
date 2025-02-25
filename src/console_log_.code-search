@@ -1,0 +1,9 @@
+# Query: console.log(
+# ContextLines: 1
+
+1 résultat - 1 fichier
+
+src/index.ts:
+  30    const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+  31:   console.log(`Server running on http://localhost:${port}`);
+  32    serve({ fetch: app.fetch, port });

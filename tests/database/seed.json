@@ -1,0 +1,57 @@
+{
+    "permissions": [
+      { "name": "CREATE_PROJECT", "category": "PROJECT" },
+      { "name": "READ_SELF_PROJECT", "category": "PROJECT" },
+      { "name": "READ_PROJECT", "category": "PROJECT" },
+      { "name": "UPDATE_SELF_PROJECT", "category": "PROJECT" },
+      { "name": "UPDATE_PROJECT", "category": "PROJECT" },
+      { "name": "DELETE_SELF_PROJECT", "category": "PROJECT" },
+      { "name": "DELETE_PROJECT", "category": "PROJECT" },
+      { "name": "CREATE_SELF_ANALYSIS", "category": "ANALYSIS" },
+      { "name": "CREATE_ANALYSIS", "category": "ANALYSIS" },
+      { "name": "READ_SELF_ANALYSIS", "category": "ANALYSIS" },
+      { "name": "READ_ANALYSIS", "category": "ANALYSIS" },
+      { "name": "UPDATE_SELF_ANALYSIS", "category": "ANALYSIS" },
+      { "name": "UPDATE_ANALYSIS", "category": "ANALYSIS" },
+      { "name": "DELETE_SELF_ANALYSIS", "category": "ANALYSIS" },
+      { "name": "DELETE_ANALYSIS", "category": "ANALYSIS" }
+    ],
+    "roles": [
+      { "id": 1, "name": "ADMIN" },
+      { "id": 2, "name": "MANAGER" },
+      { "id": 3, "name": "READER" }
+    ],
+    "users": [
+      { "id": 1, "username": "admin", "email": "admin@example.com", "isAdmin": true, "roleId": 1 },
+      { "id": 2, "username": "manager", "email": "manager@example.com", "isAdmin": false, "roleId": 2 },
+      { "id": 3, "username": "reader", "email": "reader@example.com", "isAdmin": false, "roleId": 3 }
+    ],
+    "projects": [
+      { "id": 1, "name": "Project Alpha", "createdBy": 1, "projectAccess": [2, 3] },
+      { "id": 2, "name": "Project Beta", "createdBy": 2, "projectAccess": [3] }
+    ],
+    "analyses": [
+      { "id": 1, "name": "Analysis 1", "projectId": 1, "createdBy": 1 },
+      { "id": 2, "name": "Analysis 2", "projectId": 2, "createdBy": 2 }
+    ],
+    "role_permissions": [
+      { "roleId": 1, "permissionName": "CREATE_PROJECT" },
+      { "roleId": 1, "permissionName": "READ_PROJECT" },
+      { "roleId": 1, "permissionName": "UPDATE_PROJECT" },
+      { "roleId": 1, "permissionName": "DELETE_PROJECT" },
+      { "roleId": 1, "permissionName": "CREATE_ANALYSIS" },
+      { "roleId": 1, "permissionName": "READ_ANALYSIS" },
+      { "roleId": 1, "permissionName": "UPDATE_ANALYSIS" },
+      { "roleId": 1, "permissionName": "DELETE_ANALYSIS" },
+      { "roleId": 2, "permissionName": "CREATE_PROJECT" },
+      { "roleId": 2, "permissionName": "READ_SELF_PROJECT" },
+      { "roleId": 2, "permissionName": "UPDATE_SELF_PROJECT" },
+      { "roleId": 2, "permissionName": "DELETE_SELF_PROJECT" },
+      { "roleId": 2, "permissionName": "CREATE_SELF_ANALYSIS" },
+      { "roleId": 2, "permissionName": "READ_SELF_ANALYSIS" },
+      { "roleId": 2, "permissionName": "UPDATE_SELF_ANALYSIS" },
+      { "roleId": 2, "permissionName": "DELETE_SELF_ANALYSIS" },
+      { "roleId": 3, "permissionName": "READ_SELF_ANALYSIS" }
+    ]
+  }
+  

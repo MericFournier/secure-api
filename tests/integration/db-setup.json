@@ -1,0 +1,54 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin1",
+      "email": "admin1@example.com",
+      "isAdmin": true
+    },
+    {
+      "id": 2,
+      "username": "manager1",
+      "email": "manager1@example.com",
+      "isAdmin": false
+    },
+    {
+      "id": 3,
+      "username": "reader1",
+      "email": "reader1@example.com",
+      "isAdmin": false
+    }
+  ],
+  "roles": [
+    { "id": 1, "name": "ADMIN" },
+    { "id": 2, "name": "MANAGER" },
+    { "id": 3, "name": "READER" }
+  ],
+  "userRoles": [
+    { "userId": 1, "roleId": 1 },
+    { "userId": 2, "roleId": 2 },
+    { "userId": 3, "roleId": 3 }
+  ],
+  "project": [
+    { "id": 1, "name": "Projet Admin 1", "createdBy": 1 },
+    { "id": 2, "name": "Projet Admin 2", "createdBy": 1 },
+    { "id": 3, "name": "Projet Manager 1", "createdBy": 2 },
+    { "id": 4, "name": "Projet Manager 2", "createdBy": 2 },
+    { "id": 5, "name": "Projet admin secret", "createdBy": 1 }
+  ],
+  "projectAccess": [
+    { "projectId": 2, "userId": 2 },
+    { "projectId": 3, "userId": 3 },
+    { "projectId": 4, "userId": 1 }
+  ],
+  "analyses": [
+    { "id": 1, "name": "Analyse Admin 1", "projectId": 1, "createdBy": 1 },
+    { "id": 2, "name": "Analyse Admin 2", "projectId": 1, "createdBy": 1 },
+    { "id": 3, "name": "Analyse Manager 1", "projectId": 3, "createdBy": 2 },
+    { "id": 4, "name": "Analyse Manager 2", "projectId": 3, "createdBy": 2 },
+    { "id": 5, "name": "Analyse Projet Partagé", "projectId": 3, "createdBy": 2 },
+    { "id": 6, "name": "Analyse secrète", "projectId": 4, "createdBy": 2 },
+    { "id": 7, "name": "Analyse longue", "projectId": 2, "createdBy": 2 },
+    { "id": 8, "name": "Analyse secret admin", "projectId": 5, "createdBy":1 }
+  ]
+}
