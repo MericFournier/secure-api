@@ -1,7 +1,7 @@
 
 # Securi-api
 
-Securi-api est une API créée dans le cadre d'un test technique pour la société La Mètis. Elle permet de gérer des projets et des analyses associés, avec un système d'authentification par JWT et des droits spécifiques d'écriture/lecture liées à l'utilisateur.
+Securi-api est une API permet de gérer des projets et des analyses associés, avec un système d'authentification par JWT et des droits spécifiques d'écriture/lecture liées à l'utilisateur.
 
 ## Prérequis
 
